@@ -11,19 +11,20 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const response = await axios({
-      url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      method: 'POST',
-      data: {
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
         contents: [
           {
             parts: [{ text: question }]
           }
         ]
       }
-    });
+    );
 
-    res.json(response.data);
+    const output = response.data.candidates[0]?.content?.parts[0]?.text || 'No response';
+    res.json({ response: output });
+
   } catch (err) {
     console.error('Gemini API error:', err?.response?.data || err.message);
     res.status(500).json({ error: 'Gemini API request failed' });
