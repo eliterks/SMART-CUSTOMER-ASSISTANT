@@ -7,13 +7,17 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tailwind": "tailwindcss -i ./src/input.css -o ./src/App.css --watch --content './**/*.{html,ejs,js,jsx}'"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.11",
     "@tailwindcss/vite": "^4.1.10",
     "axios": "^1.10.0",
-    "dotenv": "^16.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

@@ -2,8 +2,6 @@ import { useState } from 'react'
 import axios from 'axios'
 import './App.css'
 
-const apiKey = import.meta.env.VITE_GOOGLE_API_KEY
-
 function App() {
   const [question, setQuestion] = useState("")
   const [answer, setAnswer] = useState("")
@@ -24,25 +22,10 @@ function App() {
   async function handleAsk() {
     try {
       setAnswer("Generating answer...");
-      if (!apiKey) {
-        setAnswer("API key is not set");
-        return;
-      }
-      const response = await axios({
-        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-        method: "POST",
-        data: {
-          contents: [
-            {
-              parts: [
-                {
-                  text: question
-                }
-              ]
-            },
-          ],
-        },
+      const response = await axios.post('http://localhost:5000/api/gemini', {
+        question
       });
+
       setAnswer(response.data.candidates[0].content.parts[0].text);
     } catch (error) {
       setAnswer("Error generating answer.");
