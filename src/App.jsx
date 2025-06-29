@@ -56,7 +56,7 @@ function App() {
       <h1 className="text-6xl font-extrabold text-blue-700 mb-8">LEAD QUALIFYING CHATBOT!</h1>
       
       {/* Question Box */}
-      <div className="bg-zinc-700 shadow-lg rounded-xl p-8 w-full max-w-xl flex flex-col items-center">
+      <div className="bg-blue-400 shadow-lg rounded-xl p-8 w-full max-w-xl flex flex-col items-center">
         <input
           type="text"
           placeholder="Ask your question..."
